@@ -24,7 +24,6 @@ describe('CreateUserUseCase', () => {
   });
 
   it('should execute with correct created user result', async () => {
-    // Mock request and response objects as needed for the controller method
     // Mock your request
     const mockRequest = {
       name: 'mock name',
@@ -36,10 +35,9 @@ describe('CreateUserUseCase', () => {
     const result = await myUseCase.execute(mockRequest);
 
     expect(result).toStrictEqual(mockRequest);
-    // Add assertions or expectations based on the behavior you're testing
+    // Add assertions 
     expect(mockRepository.connectDb).toHaveBeenCalled();
     expect(mockRepository.register).toHaveBeenCalled();
 
-    // Add other assertions as needed to validate the behavior
   });
 });

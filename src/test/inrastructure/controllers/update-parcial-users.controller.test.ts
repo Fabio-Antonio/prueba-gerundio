@@ -15,7 +15,7 @@ describe('UpateParcialUserController', () => {
     // Mock the UserRepositoryImpl and any required methods or behavior
     mockUserRepository = {} as UserRepositoryImpl;
 
-    // Create the mock CreateUserUseCase instance using the factory function
+    // Create the mock UseCase
     mockUseCase = ({
       execute: jest.fn().mockResolvedValue({
         name: 'mock name',
@@ -30,7 +30,6 @@ describe('UpateParcialUserController', () => {
   });
 
   it('should execute with correct created user result', async () => {
-    // Mock request and response objects as needed for the controller method
     // Mock your request
     const mockRequest = {
       body: {
@@ -46,14 +45,13 @@ describe('UpateParcialUserController', () => {
         email: 'mock@email.com',
         phoneNumber: '+520000000000',
       },
-    }; // Mock your response
+    }; 
 
     // Call the method to test from the controller
     const result = await myController.run(mockRequest);
 
     expect(result).toStrictEqual(mockResponse);
-    // Add assertions or expectations based on the behavior you're testing
+    // Add assertions
     expect(mockUseCase.execute).toHaveBeenCalled();
-    // Add other assertions as needed to validate the behavior
   });
 });

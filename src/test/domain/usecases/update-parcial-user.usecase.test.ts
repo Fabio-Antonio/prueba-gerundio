@@ -9,7 +9,6 @@ describe('UpdateParcialUserUseCase', () => {
   beforeEach(() => {
     // Mock the UserRepositoryImpl and any required methods or behavior
 
-    // Create the mock CreateUserUseCase instance using the factory function
     mockRepository = ({
       updateByEmail: jest.fn().mockResolvedValue({
         name: 'mock name',
@@ -24,7 +23,6 @@ describe('UpdateParcialUserUseCase', () => {
   });
 
   it('should execute with correct parcial update user by email result', async () => {
-    // Mock request and response objects as needed for the controller method
     // Mock your request
     const mockRequest = {
       name: 'mock name',
@@ -36,10 +34,8 @@ describe('UpdateParcialUserUseCase', () => {
     const result = await myUseCase.execute(mockRequest);
 
     expect(result).toStrictEqual(mockRequest);
-    // Add assertions or expectations based on the behavior you're testing
+    // Add assertions
     expect(mockRepository.connectDb).toHaveBeenCalled();
     expect(mockRepository.updateByEmail).toHaveBeenCalled();
-
-    // Add other assertions as needed to validate the behavior
   });
 });

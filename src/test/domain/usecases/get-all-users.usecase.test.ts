@@ -9,7 +9,6 @@ describe('GetAllUsersUseCasee', () => {
   beforeEach(() => {
     // Mock the UserRepositoryImpl and any required methods or behavior
 
-    // Create the mock CreateUserUseCase instance using the factory function
     mockRepository = ({
       getAll: jest.fn().mockResolvedValue([
         {
@@ -36,10 +35,8 @@ describe('GetAllUsersUseCasee', () => {
     ];
 
     expect(result).toStrictEqual(mockResponse);
-    // Add assertions or expectations based on the behavior you're testing
+    // Add assertions 
     expect(mockRepository.connectDb).toHaveBeenCalled();
     expect(mockRepository.getAll).toHaveBeenCalled();
-
-    // Add other assertions as needed to validate the behavior
   });
 });
