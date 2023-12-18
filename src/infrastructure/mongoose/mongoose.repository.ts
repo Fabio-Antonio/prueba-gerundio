@@ -1,21 +1,19 @@
 import { injectable } from 'inversify';
 import * as mongoose from 'mongoose';
 
+// this is de base repository with mongoDb. Accept all type of schemas
 @injectable()
- abstract class MongooseRepository <T extends mongoose.Document> {
+abstract class MongooseRepository<T extends mongoose.Document> {
   protected model: mongoose.Model<T>;
 
-  constructor(model:mongoose.Model<T>){
-   this.model= model
+  constructor(model: mongoose.Model<T>) {
+    this.model = model;
   }
 
-
-  public async getAll():Promise<T[]> {
+  // get all data from collection
+  public async getAll(): Promise<T[]> {
     try {
-   
-      const result = await this.model
-        .find()
-        .exec()
+      const result = await this.model.find().exec();
 
       return result;
     } catch (error) {
@@ -23,7 +21,8 @@ import * as mongoose from 'mongoose';
     }
   }
 
-  public async register(entity: T):Promise<T> {
+  // Add new reister in collection
+  public async register(entity: T): Promise<T> {
     try {
       return await this.model.create(entity);
     } catch (error) {
@@ -31,7 +30,8 @@ import * as mongoose from 'mongoose';
     }
   }
 
-  public async findOne( params: any) {
+  //find one in collection by params
+  public async findOne(params: any) {
     try {
       const result = await this.model.findOne({ ...params }).exec();
 
@@ -43,10 +43,10 @@ import * as mongoose from 'mongoose';
     }
   }
 
-  public async remove(id: string,) {
+  // reove register in collection
+  public async remove(id: string) {
     try {
-      const result = await this.model
-        .findByIdAndDelete(id).exec();
+      const result = await this.model.findByIdAndDelete(id).exec();
 
       if (!result) return null;
 
@@ -61,4 +61,4 @@ import * as mongoose from 'mongoose';
   }
 }
 
-export default MongooseRepository
+export default MongooseRepository;

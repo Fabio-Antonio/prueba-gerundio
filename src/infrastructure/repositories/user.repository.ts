@@ -5,16 +5,19 @@ import { Document, Model } from 'mongoose';
 import { MongooseConnection } from '../mongoose/connection';
 import { IUser } from '../../domain/interfaces/user.interface';
 
+// User repository to make operations only for user collection
 @injectable()
 export class UserRepositoryImpl extends MongooseRepository<IUserDocument> {
   constructor(@inject('UserModel') userModel: Model<Document>) {
     super((userModel as unknown) as Model<IUserDocument>);
   }
 
+  // connection with database
   public async connectDb(bd: string): Promise<void> {
     await MongooseConnection.connect(bd);
   }
 
+  // get user register by email
   public async getUserByEmail(email: string): Promise<IUserDocument | null> {
     try {
       const response = await this.model.findOne({ email }).exec();
@@ -24,6 +27,8 @@ export class UserRepositoryImpl extends MongooseRepository<IUserDocument> {
       throw new Error(error as string | undefined);
     }
   }
+
+  //update user register by email
 
   async updateByEmail(
     email: string,
@@ -41,6 +46,7 @@ export class UserRepositoryImpl extends MongooseRepository<IUserDocument> {
     }
   }
 
+  // delete user register by email
   async deleteByEmail(email: string): Promise<void> {
     try {
       await this.model.findOneAndDelete({ email }).exec();

@@ -13,7 +13,7 @@ describe('CreateUserController', () => {
     // Mock the UserRepositoryImpl and any required methods or behavior
     mockUserRepository = {} as UserRepositoryImpl;
 
-    // Create the mock CreateUserUseCase instance using the factory function
+    // Create the mock CreateUserUseCase 
     mockUseCase = ({
       execute: jest.fn().mockResolvedValue({
         name: 'mock name',
@@ -28,7 +28,6 @@ describe('CreateUserController', () => {
   });
 
   it('should execute with correct created user result', async () => {
-    // Mock request and response objects as needed for the controller method
     // Mock your request
     const mockRequest = {
       body: {
@@ -50,9 +49,9 @@ describe('CreateUserController', () => {
     const result = await myController.run(mockRequest);
 
     expect(result).toStrictEqual(mockResponse);
-    // Add assertions or expectations based on the behavior you're testing
+    // Add assertions 
     expect(mockUseCase.execute).toHaveBeenCalled();
-    // Add other assertions as needed to validate the behavior
+
   });
 
 });

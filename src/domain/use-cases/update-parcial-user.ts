@@ -3,6 +3,7 @@ import { IUser } from '../interfaces/user.interface';
 import { TYPES } from '../../types';
 import { UserRepositoryImpl } from '../../infrastructure/repositories/user.repository';
 
+//Update user info by email
 @injectable()
 export class UpdateParcialUserUseCase {
   constructor(
@@ -11,7 +12,9 @@ export class UpdateParcialUserUseCase {
   ) {}
   public async execute(input: IUser): Promise<unknown> {
     try {
+      // Connect to user collection
       await this.userRepositoryimpl.connectDb('users');
+      // Use update by email method from user repository
       const result = await this.userRepositoryimpl.updateByEmail(
         input.email,
         input

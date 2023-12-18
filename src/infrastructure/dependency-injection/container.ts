@@ -6,8 +6,7 @@ import { CreateUserUseCase } from '../../domain/use-cases/create-user.usecase';
 
 import { UserRepositoryImpl } from '../repositories/user.repository';
 import UserModel from '../mongoose/schemas/user.schema';
-import { Document, Model } from 'mongoose';
-import MongooseRepository from '../mongoose/mongoose.repository';
+import { Model } from 'mongoose';
 import { IUserDocument } from '../mongoose/schemas/user.schema';
 import { GetAllUsersUseCase } from '../../domain/use-cases/get-all-users.usecases';
 import { GetAllUsersUserController } from '../controllers/get-users-Controller';
